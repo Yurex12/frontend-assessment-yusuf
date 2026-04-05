@@ -44,3 +44,8 @@ export type ProductResponse = {
   skip: number;
   limit: number;
 };
+
+export type ProductListContainerProps = {
+  category?: string;
+  query?: string;
+};

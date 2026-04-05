@@ -1,9 +1,15 @@
-import { Pagination } from '@/components/Pagination';
 import { getProducts } from '../api';
+
 import { ProductList } from './ProductList';
 
-export async function ProductListContainer() {
-  const data = await getProducts();
+import { Pagination } from '@/components/Pagination';
+import { ProductListContainerProps } from '../types';
+
+export async function ProductListContainer({
+  category,
+  query,
+}: ProductListContainerProps) {
+  const data = await getProducts({ category, query });
 
   if (!data.products || data.products.length === 0) {
     return (

@@ -1,16 +1,29 @@
 import { API_URL } from '@/lib/api';
 import { Product, ProductResponse } from '../types';
 
-export async function getProducts(): Promise<ProductResponse> {
-  const res = await fetch(`${API_URL}`, {
-    next: { revalidate: 60 },
-  });
+export async function getProducts(params?: {
+  category?: string;
+  query?: string;
+  page?: number;
+}): Promise<ProductResponse> {
+  const limit = 20;
+  const skip = ((params?.page || 1) - 1) * limit;
 
-  if (!res.ok) throw new Error('Failed to fetch products');
+  let baseUrl = API_URL;
 
+  if (params?.query) {
+    baseUrl += `/search?q=${params.query}&`;
+  } else if (params?.category && params.category !== 'all') {
+    baseUrl += `/category/${params.category}?`;
+  } else {
+    baseUrl += '?';
+  }
+
+  const url = `${baseUrl}limit=${limit}&skip=${skip}`;
+
+  const res = await fetch(url, { next: { revalidate: 60 } });
   return res.json();
 }
-
 export async function getProductById(id: string): Promise<Product | null> {
   const res = await fetch(`${API_URL}/${id}`, {
     cache: 'no-store',
