@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yusufstore-store.vercel.app',
+    url: 'https://yusufonlinestore-store.vercel.app',
     siteName: 'YusufStore',
     title: 'YusufStore | Modern Shopping',
     description:
