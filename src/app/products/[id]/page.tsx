@@ -11,7 +11,7 @@ export default async function Page({
   const { id } = await params;
 
   return (
-    <div>
+    <div className='py-4'>
       <Suspense fallback={<ProductDetailSkeleton />}>
         <ProductDetailContainer id={id} />
       </Suspense>
