@@ -1,3 +1,4 @@
+import { Pagination } from '@/components/Pagination';
 import { getProducts } from '../api';
 import { ProductList } from './ProductList';
 
@@ -12,5 +13,10 @@ export async function ProductListContainer() {
     );
   }
 
-  return <ProductList products={data.products} />;
+  return (
+    <div>
+      <ProductList products={data.products} />;
+      <Pagination totalItems={data.total} />
+    </div>
+  );
 }
