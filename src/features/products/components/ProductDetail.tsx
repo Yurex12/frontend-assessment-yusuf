@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Star, Package, ShieldCheck, Truck } from 'lucide-react';
 import { Product } from '@/features/products/types';
 import { formatPrice } from '@/lib/helpers';
+import { Breadcrumbs } from './Breadcrumbs';
 
 export default function ProductDetail({ product }: { product: Product }) {
   const {
@@ -19,6 +20,7 @@ export default function ProductDetail({ product }: { product: Product }) {
 
   return (
     <div className='flex flex-col'>
+      <Breadcrumbs category={product.category} title={product.title} />
       <div className='grid grid-cols-1 md:grid-cols-2 gap-16 items-start'>
         <div className='relative aspect-square w-full bg-muted overflow-hidden rounded-sm border border-foreground/5'>
           <Image
